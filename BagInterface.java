@@ -1,15 +1,15 @@
 public interface Bag<T>
 {
-    final int MAX_CAPACITY; 
+    //final int MAX_CAPACITY; 
     /*
-        The size of the bag, will decide what size it is later :P 
+        ^^Don't think we need this implemented actually^^
     */
 
     //Dealing with bag of INTEGERS, T = int
 
-    int getCurrentSize(); //size of bag
+    int getCurrentSize(); //returns the size of bag
 
-    boolean isEmpty(); //bag list empty
+    boolean isEmpty(); //returns if the bag list empty
 
     boolean add(T add); //adding item to the bag
     /*
