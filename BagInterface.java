@@ -1,4 +1,4 @@
-interface Bag
+public interface Bag<T>
 {
     final int MAX_CAPACITY; 
     /*
@@ -11,7 +11,7 @@ interface Bag
 
     boolean isEmpty(); //bag list empty
 
-    boolean add(int t); //adding item to the bag
+    boolean add(T add); //adding item to the bag
     /*
         If bag is full or value type does not match the bag type, 
             returns false because t could not be added
@@ -25,7 +25,7 @@ interface Bag
         For Nodes, remove the first due to efficiency
     */
 
-    boolean remove(int t); //removes value of t
+    boolean remove(T add); //removes value of t
     /*
         If t is in the bag, returns true
         If t is not in the bag, returns false
@@ -34,11 +34,11 @@ interface Bag
     void clear(); //removes all values, Thanos snap those values 
     //No return value
 
-    int getFrequencyOf(int t); //return how many times t appears in the list
+    int getFrequencyOf(T frequency); //return how many times t appears in the list
     //NOT NEEDED FOR SETS
 
-    boolean contains(int t); //return does the list contain t
+    boolean contains(T contains); //return does the list contain t
 
-    int[] toArray(); //turns bag into an int[]
+    T[] toArray(); //turns bag into an int[]
 
 }
