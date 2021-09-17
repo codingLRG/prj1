@@ -6,7 +6,7 @@
  * @author Frank M. Carrano, Timothy M. Henry
  * @version 5.0
  */
-public final class LinkedBag<T> implements BagInterface<T> {
+public class LinkedBag<T> implements BagInterface<T> {
 	private Node firstNode; // Reference to first node
 	private int numberOfEntries;
 
@@ -132,5 +132,13 @@ public final class LinkedBag<T> implements BagInterface<T> {
 			data = dataPortion;
 			next = nextNode;
 		} // end constructor
+
 	} // end Node
+
+	// @Override
+	public BagInterface<T> union(BagInterface<T> bag2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // end LinkedBag1

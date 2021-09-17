@@ -228,8 +228,8 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
          throw new SecurityException("ArrayBag object is corrupt.");
    } // end checkintegrity
 
-   private ResizableArrayBag<T> union(ResizableArrayBag<T> bag2) {
-      ResizableArrayBag<T> newBag = new ResizableArrayBag<T>();
+   public BagInterface<T> union(BagInterface<T> bag2) {
+      BagInterface<T> newBag = new ResizableArrayBag<T>();
       for (T A : toArray())
          newBag.add(A);
       for (T A : bag2.toArray())
