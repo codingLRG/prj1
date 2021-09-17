@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author Frank M. Carrano, Timothy M. Henry
  * @version 5.0
  */
-public final class ResizableArrayBag<T> implements BagInterface<T> {
+public class ResizableArrayBag<T> implements BagInterface<T> {
    private T[] bag; // Cannot be final due to doubling
    private int numberOfEntries;
    private boolean integrityOK = false;
@@ -229,10 +229,10 @@ public final class ResizableArrayBag<T> implements BagInterface<T> {
    } // end checkintegrity
 
    private ResizableArrayBag<T> union(ResizableArrayBag<T> bag2) {
-      BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (ResizableArrayBag<T> A : toArray())
+      ResizableArrayBag<T> newBag = new ResizableArrayBag<T>();
+      for (T A : toArray())
          newBag.add(A);
-      for (ResizableArrayBag<T> A : bag2.toArray())
+      for (T A : bag2.toArray())
          newBag.add(A);
       return newBag;
    }
