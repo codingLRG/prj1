@@ -237,6 +237,34 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
       return newBag;
    }
 
+   public BagInterface<T> difference(BagInterface<T> bag2) {
+      BagInterface<T> newBag = new ResizableArrayBag<T>();
+      boolean contains = false;
+      for (T x : toArray()) {
+         for (T y : bag2.toArray())
+            if (x == y || x.equals(y))
+               contains = true;
+         if (!contains)
+            newBag.add(x);
+      }
+
+      return newBag;
+   }
+
+   public BagInterface<T> intersection(BagInterface<T> bag2) {
+      BagInterface<T> newBag = new ResizableArrayBag<T>();
+      boolean contains = false;
+      for (T x : toArray()) {
+         for (T y : bag2.toArray())
+            if (x == y || x.equals(y))
+               contains = true;
+         if (contains)
+            newBag.add(x);
+      }
+
+      return newBag;
+   }
+
 } // end ResizableArrayBag
 
 /*
