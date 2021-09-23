@@ -246,6 +246,7 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
                contains = true;
          if (!contains)
             newBag.add(x);
+         contains = false;
       }
 
       return newBag;
@@ -260,6 +261,7 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
                contains = true;
          if (contains)
             newBag.add(x);
+         contains = false;
       }
 
       return newBag;

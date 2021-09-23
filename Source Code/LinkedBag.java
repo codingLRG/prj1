@@ -137,16 +137,48 @@ public class LinkedBag<T> implements BagInterface<T> {
 
 	// @Override
 	public BagInterface<T> union(BagInterface<T> bag2) {
-		// TODO Auto-generated method stub
-		return null;
+		// No issue
+		BagInterface<T> newBag = new LinkedBag<T>();
+		for (T A : toArray())
+			newBag.add(A);
+		for (T A : bag2.toArray())
+			newBag.add(A);
+		return newBag;
 	}
 
 	public BagInterface<T> difference(BagInterface<T> bag2) {
-		return null;
+		BagInterface<T> newBag = new LinkedBag<T>();
+		boolean contains = false;
+		for (T x : toArray()) {
+			for (T y : bag2.toArray()) {
+
+				if (x == y || x.equals(y)) {
+					contains = true;
+				}
+			}
+			if (!contains)
+				newBag.add(x);
+			contains = false;
+		}
+
+		return newBag;
 	}
 
 	public BagInterface<T> intersection(BagInterface<T> bag2) {
-		return null;
-	}
+		BagInterface<T> newBag = new LinkedBag<T>();
+		boolean contains = false;
+		for (T x : toArray()) {
+			for (T y : bag2.toArray())
+				if (x == y || x.equals(y)) {
+					contains = true;
+					System.out.println(x);
+				}
+			if (contains)
+				newBag.add(x);
+			contains = false;
+		}
 
+		return newBag;
+	}
+	// Issue: Loops only once,
 } // end LinkedBag1
