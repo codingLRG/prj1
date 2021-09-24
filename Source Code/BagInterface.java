@@ -1,10 +1,3 @@
-/**
- * An interface that describes the operations of a bag of objects.
- * 
- * @author Frank M. Carrano
- * @author Timothy M. Henry
- * @version 5.0
- */
 public interface BagInterface<T> {
 	/**
 	 * Gets the current number of entries in this bag.
