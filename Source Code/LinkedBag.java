@@ -107,7 +107,21 @@ public class LinkedBag<T> implements BagInterface<T> {
 	 * @return The number of times anEntry appears in the bag.
 	 */
 	public int getFrequencyOf(T anEntry) {
-		return 0; // STUB
+		int frequency = 0;
+
+		int counter = 0;
+		Node currentNode = firstNode;
+		while ((counter < numberOfEntries) && (currentNode != null)) {
+			if (anEntry.equals(currentNode.getData())) {
+				frequency++;
+			}
+			counter++;
+			currentNode = currentNode.getNextNode();
+		}
+
+		return frequency;
+
+		// STUB
 	} // end getFrequencyOf
 
 	/**
@@ -117,7 +131,20 @@ public class LinkedBag<T> implements BagInterface<T> {
 	 * @return True if the bag contains anEntry, or false otherwise.
 	 */
 	public boolean contains(T anEntry) {
-		return false; // STUB
+		boolean found = false;
+		Node currentNode = firstNode;
+
+		while (!found && (currentNode != null)) {
+			if (anEntry.equals(currentNode.getData()))
+				found = true;
+			else
+				currentNode = currentNode.getNextNode();
+
+		}
+
+		return found;
+
+		// STUB
 	} // end contains
 
 	private class Node {
@@ -132,6 +159,14 @@ public class LinkedBag<T> implements BagInterface<T> {
 			data = dataPortion;
 			next = nextNode;
 		} // end constructor
+
+		private T getData() {
+			return data;
+		}
+
+		private Node getNextNode() {
+			return next;
+		}
 
 	} // end Node
 
@@ -148,35 +183,31 @@ public class LinkedBag<T> implements BagInterface<T> {
 
 	public BagInterface<T> difference(BagInterface<T> bag2) {
 		BagInterface<T> newBag = new LinkedBag<T>();
-		boolean contains = false;
 		for (T x : toArray()) {
-			for (T y : bag2.toArray()) {
-
-				if (x == y || x.equals(y)) {
-					contains = true;
+			if (!newBag.contains(x)) {
+				int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
+				if (over < 0) // only negative if bag2 has more instances than bag1
+					over = 0;
+				for (int a = over; a > 0; a--) {
+					newBag.add(x);
 				}
 			}
-			if (!contains)
-				newBag.add(x);
-			contains = false;
 		}
-
 		return newBag;
 	}
 
 	public BagInterface<T> intersection(BagInterface<T> bag2) {
 		BagInterface<T> newBag = new LinkedBag<T>();
-		boolean contains = false;
 		for (T x : toArray()) {
-			for (T y : bag2.toArray())
-				if (x == y || x.equals(y)) {
-					contains = true;
+			if (!newBag.contains(x)) {
+				int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
+				if (over < 0) // only negative if bag2 has more instances than bag1
+					over = 0;
+				for (int a = getFrequencyOf(x) - over; a > 0; a--) {
+					newBag.add(x);
 				}
-			if (contains)
-				newBag.add(x);
-			contains = false;
+			}
 		}
-
 		return newBag;
 	}
 	// Issue: Loops only once,
