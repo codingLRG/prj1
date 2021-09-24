@@ -1,11 +1,3 @@
-/**
- * A class of bags whose entries are stored in a chain of linked nodes. The bag
- * is never full. INCOMPLETE DEFINITION; includes definitions for the methods
- * add, toArray, isEmpty, and getCurrentSize.
- * 
- * @author Frank M. Carrano, Timothy M. Henry
- * @version 5.0
- */
 public class LinkedBag<T> implements BagInterface<T> {
 	private Node firstNode; // Reference to first node
 	private int numberOfEntries;
