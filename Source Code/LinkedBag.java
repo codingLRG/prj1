@@ -171,6 +171,12 @@ public class LinkedBag<T> implements BagInterface<T> {
 	} // end Node
 
 	// @Override
+	/**
+	 * Combine two bags into one new bag
+	 *
+	 * @param bag2 bag being compared to bag1
+	 * @return a bag of all values from bag1 and bag2 (including duplicates)
+	 */
 	public BagInterface<T> union(BagInterface<T> bag2) {
 		// No issue
 		BagInterface<T> newBag = new LinkedBag<T>();
@@ -181,6 +187,13 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return newBag;
 	}
 
+	/**
+	 * Find's the difference between two bags
+	 *
+	 * @param bag2 bag being compared to bag1
+	 * @return a bag of all values from bag1 that do not have an original pair with
+	 *         bag2
+	 */
 	public BagInterface<T> difference(BagInterface<T> bag2) {
 		BagInterface<T> newBag = new LinkedBag<T>();
 		for (T x : toArray()) {
@@ -196,6 +209,13 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return newBag;
 	}
 
+	/**
+	 * Finds values of a bag that have a match
+	 * 
+	 * @param bag2 bag being compared to bag1
+	 * @return a bag with all values of bag1 that have an unique and equal pair with
+	 *         bag2
+	 */
 	public BagInterface<T> intersection(BagInterface<T> bag2) {
 		BagInterface<T> newBag = new LinkedBag<T>();
 		for (T x : toArray()) {
