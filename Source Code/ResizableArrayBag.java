@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.lang.Math;
 
 /**
  * A class that implements a bag of objects by using an array. The bag is never
@@ -239,14 +240,15 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> difference(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      boolean contains = false;
       for (T x : toArray()) {
-         for (T y : bag2.toArray())
-            if (x == y || x.equals(y))
-               contains = true;
-         if (!contains)
-            newBag.add(x);
-         contains = false;
+         if (!newBag.contains(x)) {
+            int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
+            if (over < 0) // only negative if bag2 has more instances than bag1
+               over = 0;
+            for (int a = over; a > 0; a--) {
+               newBag.add(x);
+            }
+         }
       }
 
       return newBag;
@@ -254,14 +256,15 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> intersection(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      boolean contains = false;
       for (T x : toArray()) {
-         for (T y : bag2.toArray())
-            if (x == y || x.equals(y))
-               contains = true;
-         if (contains)
-            newBag.add(x);
-         contains = false;
+         if (!newBag.contains(x)) {
+            int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
+            if (over < 0) // only negative if bag2 has more instances than bag1
+               over = 0;
+            for (int a = getFrequencyOf(x) - over; a > 0; a--) {
+               newBag.add(x);
+            }
+         }
       }
 
       return newBag;

@@ -171,7 +171,6 @@ public class LinkedBag<T> implements BagInterface<T> {
 			for (T y : bag2.toArray())
 				if (x == y || x.equals(y)) {
 					contains = true;
-					System.out.println(x);
 				}
 			if (contains)
 				newBag.add(x);

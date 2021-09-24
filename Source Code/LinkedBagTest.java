@@ -10,6 +10,14 @@ public class LinkedBagTest<T> extends LinkedBag<T> {
             bag1.add(Integer.toString(x));
             bag2.add(Integer.toString(x + 2));
         }
+        for (int x = 0; x < 3; x++) {
+            bag1.add(Integer.toString(x));
+            bag2.add(Integer.toString(x + 2));
+        }
+        for (int x = 0; x < 3; x++) {
+            bag1.add(Integer.toString(x));
+            bag2.add(Integer.toString(x + 2));
+        }
         System.out.println("Bag1: " + Arrays.toString(bag1.toArray()));
         System.out.println("Bag2: " + Arrays.toString(bag2.toArray()));
 
