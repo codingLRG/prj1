@@ -1,7 +1,9 @@
-Devon Willis, Joey Cindass, Allison Ly
+i) Devon Willis, Joey Cindass, Allison Ly
 
-Contributions:
-Devon - Added methods and driver classes
-Allison - Presented idea of the using frequency in bag in order to find intersection and difference
-Joey - Constructed javaDoc
+ii)
 
+iii) We did not implement unit test class using some framework for this project.
+
+iv)
+
+v)
