@@ -172,8 +172,10 @@ public class LinkedBag<T> implements BagInterface<T> {
 	public BagInterface<T> union(BagInterface<T> bag2) {
 		// No issue
 		BagInterface<T> newBag = new LinkedBag<T>();
-		for (T A : toArray())
+		for (T A : toArray()) {
 			newBag.add(A);
+		}
+
 		for (T A : bag2.toArray())
 			newBag.add(A);
 		return newBag;

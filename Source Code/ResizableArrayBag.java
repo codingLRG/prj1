@@ -1,5 +1,13 @@
 import java.util.Arrays;
+import java.lang.Math;
 
+/**
+ * A class that implements a bag of objects by using an array. The bag is never
+ * full.
+ * 
+ * @author Frank M. Carrano, Timothy M. Henry
+ * @version 5.0
+ */
 public class ResizableArrayBag<T> implements BagInterface<T> {
    private T[] bag; // Cannot be final due to doubling
    private int numberOfEntries;
@@ -154,6 +162,10 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
       return anEntry.equals(result);
    } // end remove
 
+   /**
+    * @param anEntry
+    * @return int
+    */
    // Locates a given entry within the array bag.
    // Returns the index of the entry, if located,
    // or -1 otherwise.
@@ -177,6 +189,10 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
       return where;
    } // end getIndexOf
 
+   /**
+    * @param givenIndex
+    * @return T
+    */
    // Removes and returns the entry at a given index within the array.
    // If no such entry exists, returns null.
    // Precondition: 0 <= givenIndex < numberOfEntries.
@@ -195,6 +211,9 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
       return result;
    } // end removeEntry
 
+   /**
+    * @return boolean
+    */
    // Returns true if the array bag is full, or false if not.
    private boolean isArrayFull() {
       return numberOfEntries >= bag.length;
@@ -208,6 +227,9 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
       bag = Arrays.copyOf(bag, newLength);
    } // end doubleCapacity
 
+   /**
+    * @param capacity
+    */
    // Throws an exception if the client requests a capacity that is too large.
    private void checkCapacity(int capacity) {
       if (capacity > MAX_CAPACITY)
@@ -230,10 +252,14 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> union(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (T A : toArray())
+      for (int a = 0; a < numberOfEntries; a++) {
+         T A = bag[a];
          newBag.add(A);
-      for (T A : bag2.toArray())
+      }
+      for (int a = 0; a < bag2.getCurrentSize(); a++) {
+         T A = bag[a];
          newBag.add(A);
+      }
       return newBag;
    }
 
@@ -247,12 +273,13 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> difference(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (T x : toArray()) {
+      for (int a = 0; a < numberOfEntries; a++) {
+         T x = bag[a];
          if (!newBag.contains(x)) {
             int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
             if (over < 0) // only negative if bag2 has more instances than bag1
                over = 0;
-            for (int a = over; a > 0; a--)
+            for (int A = over; A > 0; A--)
                newBag.add(x);
          }
       }
@@ -267,15 +294,15 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
     * @return a bag with all values of bag1 that have an unique and equal pair with
     *         bag2
     */
-
    public BagInterface<T> intersection(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (T x : toArray()) {
+      for (int a = 0; a < numberOfEntries; a++) {
+         T x = bag[a];
          if (!newBag.contains(x)) {
             int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
             if (over < 0) // only negative if bag2 has more instances than bag1
                over = 0;
-            for (int a = getFrequencyOf(x) - over; a > 0; a--)
+            for (int A = getFrequencyOf(x) - over; A > 0; A--)
                newBag.add(x);
          }
       }
