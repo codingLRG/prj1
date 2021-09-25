@@ -252,14 +252,10 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> union(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (int a = 0; a < numberOfEntries; a++) {
-         T A = bag[a];
-         newBag.add(A);
-      }
-      for (int a = 0; a < bag2.getCurrentSize(); a++) {
-         T A = bag[a];
-         newBag.add(A);
-      }
+      for (T A : toArray()) // itterates through the array
+         newBag.add(A); // adds all values in toArray() for our current bag into this new bag
+      for (T A : bag2.toArray()) // itterates
+         newBag.add(A); // adds all values for bag2's toArray() to the new bag
       return newBag;
    }
 
@@ -273,13 +269,21 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
 
    public BagInterface<T> difference(BagInterface<T> bag2) {
       BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (int a = 0; a < numberOfEntries; a++) {
-         T x = bag[a];
+      for (T x : toArray()) { // itterates through every value of our current bag
          if (!newBag.contains(x)) {
-            int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
+            /*
+             * If value is in the list, then it has already been added to the new bag We
+             * ignore to not duplicate values
+             */
+            int over = getFrequencyOf(x) - bag2.getFrequencyOf(x); // logic for for loop
             if (over < 0) // only negative if bag2 has more instances than bag1
                over = 0;
             for (int A = over; A > 0; A--)
+               /*
+                * Attempting to eliminate pairs and adding individual values Variable over
+                * tells how many more values are in bag1 than bag2 That difference is the
+                * difference We add that value for each difference
+                */
                newBag.add(x);
          }
       }
@@ -295,14 +299,23 @@ public class ResizableArrayBag<T> implements BagInterface<T> {
     *         bag2
     */
    public BagInterface<T> intersection(BagInterface<T> bag2) {
-      BagInterface<T> newBag = new ResizableArrayBag<T>();
-      for (int a = 0; a < numberOfEntries; a++) {
-         T x = bag[a];
+      BagInterface<T> newBag = new ResizableArrayBag<T>(); // itterates through every value of our current bag
+      for (T x : toArray()) {
          if (!newBag.contains(x)) {
+            /*
+             * If value is in the list, then it has already been added to the new bag We
+             * ignore to not duplicate values
+             */
             int over = getFrequencyOf(x) - bag2.getFrequencyOf(x);
             if (over < 0) // only negative if bag2 has more instances than bag1
                over = 0;
             for (int A = getFrequencyOf(x) - over; A > 0; A--)
+               /*
+                * Attempting to find pairs and eliminating individual values Variable over
+                * tells how many more values are in bag1 than bag2 That difference of the
+                * frequency of bag1[x] and over is the intersection We add that value for each
+                * difference
+                */
                newBag.add(x);
          }
       }
