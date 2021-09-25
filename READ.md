@@ -1,4 +1,5 @@
-Devon Willis
-https://kbroman.org/github_tutorial/pages/fork.html
-
-Link to Website Explaining Generics:https://www.geeksforgeeks.org/generics-in-java/
+i) Devon Willis, Joey Cindass, Allison Ly
+ii)
+iii) We did not implement unit test class using some framework for this project.
+iv)
+v)
