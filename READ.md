@@ -1,4 +1,7 @@
-Devon Willis
-https://kbroman.org/github_tutorial/pages/fork.html
+Devon Willis, Joey Cindass, Allison Ly
 
-Link to Website Explaining Generics:https://www.geeksforgeeks.org/generics-in-java/
+Contributions:
+Devon - Added methods and driver classes
+Allison - Presented idea of the using frequency in bag in order to find intersection and difference
+Joey - Constructed javaDoc
+
